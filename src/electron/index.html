@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Network Utilities</title>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const { SpeedTest } = require('../core/speedtest');
+				const { PortScanner } = require('../core/portscanner');
+
+				document
+					.getElementById('runSpeedtest')
+					.addEventListener('click', async () => {
+						const speedtest = new SpeedTest();
+						const results = await speedtest.measure();
+						document.getElementById('speedtestResults').innerHTML = `
+            Download: ${results.download.toFixed(2)} Mbps<br>
+            Upload: ${results.upload.toFixed(2)} Mbps<br>
+            Ping: ${results.ping}ms
+          `;
+					});
+
+				document
+					.getElementById('runScan')
+					.addEventListener('click', async () => {
+						const host = document.getElementById('host').value;
+						const startPort = parseInt(
+							document.getElementById('startPort').value,
+						);
+						const endPort = parseInt(document.getElementById('endPort').value);
+
+						const scanner = new PortScanner();
+						const openPorts = await scanner.scan(host, startPort, endPort);
+						document.getElementById('scanResults').innerHTML = `
+            Open ports: ${openPorts.join(', ')}
+          `;
+					});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Network Utilities</h1>
+		<div>
+			<h2>Speed Test</h2>
+			<button id="runSpeedtest">Run Speed Test</button>
+			<div id="speedtestResults"></div>
+		</div>
+		<div>
+			<h2>Port Scanner</h2>
+			<input type="text" id="host" placeholder="Host" />
+			<input type="number" id="startPort" placeholder="Start Port" />
+			<input type="number" id="endPort" placeholder="End Port" />
+			<button id="runScan">Scan Ports</button>
+			<div id="scanResults"></div>
+		</div>
+	</body>
+</html>
