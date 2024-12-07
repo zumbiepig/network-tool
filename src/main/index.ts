@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import { SpeedTest } from '../core/speedtest';
 import { PortScanner } from '../core/portscanner';
+import "../gui/index.ts" with { type: "file" };
 
 const program = new Command();
 

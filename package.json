@@ -1,32 +1,37 @@
 {
-	"name": "network-tool",
-	"module": "src/main/index.ts",
-	"type": "module",
-	"scripts": {
-		"start": "bun run -c .",
-		"format": "bun run -c prettier -w .",
-		"format:check": "bun run -c prettier -c .",
-		"lint": "bun run -c eslint",
-		"lint:fix": "bun run -c eslint --fix"
-	},
-	"dependencies": {
-		"bun": "latest",
-		"commander": "^12.1.0",
-		"electron": "^33.2.1",
-		"tsx": "^4.19.2"
-	},
-	"devDependencies": {
-		"@commander-js/extra-typings": "^12.1.0",
-		"@tsconfig/bun": "^1.0.7",
-		"@tsconfig/strictest": "^2.0.5",
-		"@types/bun": "latest",
-		"@types/eslint-config-prettier": "^6.11.3",
-		"@types/node": "^22.10.1",
-		"eslint": "^9.15.0",
-		"prettier": "^3.4.1",
-		"typescript-eslint": "^8.16.0"
-	},
-	"peerDependencies": {
-		"typescript": "^5.7.2"
-	}
+  "name": "network-tool",
+  "module": "src/main/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun -c run .",
+    "bundle": "bun -c build --compile --minify --sourcemap ./src/main/index.ts ./src/**/* --outfile network-tool",
+    "format": "bun -c run prettier -w .",
+    "format:check": "bun -c run prettier -c .",
+    "lint": "bun -c run eslint",
+    "lint:fix": "bun -c run eslint --fix"
+  },
+  "dependencies": {
+    "@hurdlegroup/robotjs": "^0.12.2",
+    "bun": "latest",
+    "commander": "^12.1.0",
+    "electron": "^33.2.1",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@commander-js/extra-typings": "^12.1.0",
+    "@tsconfig/bun": "^1.0.7",
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/bun": "latest",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
+    "prettier": "^3.4.2",
+    "typescript-eslint": "^8.17.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "trustedDependencies": [
+    "@hurdlegroup/robotjs"
+  ]
 }
